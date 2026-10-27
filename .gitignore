@@ -218,3 +218,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Audios y transcripciones: nunca se suben al repositorio
+*.m4a
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.aiff
+*.mp4
+*.txt
+!glosario-whisper.txt
+!requirements.txt
