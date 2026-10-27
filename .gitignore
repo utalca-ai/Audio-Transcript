@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Audios de reuniones: nunca se suben al repositorio
+audio/
+*.m4a
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.aiff

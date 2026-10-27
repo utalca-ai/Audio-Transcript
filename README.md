@@ -86,3 +86,22 @@ model = whisper.load_model("medium", device=device)
 
 
 * Para audios largos, se recomienda encarecidamente el uso de GPU. Si el script detecta que solo tienes CPU, emitirá una advertencia, ya que el proceso será significativamente más lento.
+
+## Opción C: Transcripción local sin GPU (`transcribir_local.py`)
+
+Para reuniones con información sensible (datos del Hospital de Curicó, resultados no publicados), el audio **no debe subirse a Colab ni a Drive**. Esta opción corre completamente en tu computador, sin tarjeta gráfica, usando `faster-whisper` con el modelo `large-v3-turbo` cuantizado (int8). No requiere FFmpeg ni PyTorch.
+
+```bash
+pip install -r requirements-local.txt
+python transcribir_local.py ruta/al/2026-10-22-reunion.m4a
+```
+
+El resultado queda junto al audio, con el mismo nombre y extensión `.txt`, y la hora de cada frase:
+
+```txt
+[00:12:41] Entonces el objetivo es predecir el nivel de glicemia, no clasificar.
+```
+
+* El idioma está fijo en español.
+* `glosario-whisper.txt` le indica a Whisper los nombres y términos del laboratorio (WindowSHAP, BiGRU, Zotero…). Agrega los de tu tema al final; Whisper solo lee las primeras ~200 palabras.
+* Sin GPU demora del orden de la duración del audio. Si se queda sin memoria: `--modelo medium`.
